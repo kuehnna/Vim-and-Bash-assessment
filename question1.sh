@@ -1,5 +1,5 @@
 #selects all files ending in _scores.out
-for file in *_scores.out
+for file in Y4-models/*_scores.out
   #outputs name of file
   do echo "$file"
   #outputs linecount of file (-2 because first 2 lines are header, not models)
