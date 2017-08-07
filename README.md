@@ -20,6 +20,7 @@ done
 ### Answer:
 
 The answer is -1174.020.  
+
 Method: found relevant line in relevant file using grep -r and -n; then used
 ```
 awk 'NR==2 || NR==36' Y4-models/37289_45688_scores.out | awk '{print $1 "\t" $2}'
@@ -61,6 +62,6 @@ awk 'NR > 1' scores.txt | sort -k2 -n >> sorted_models.txt
 ```
 #First: finding 10 models with lowest sum of total_score and interface_delta_X:
 awk '{if (NR > 1) print $3 "\t" ($1 + $2) "\t" $4}' sorted_models.txt | sort -k2 -g | head -n 10
-This is used inside a short bash script to define the range for a loop variable named "model":
+#This is used inside a short bash script to define the range for a loop variable named "model":
 for model in $(awk '{if (NR > 1) print $3 "\t" ($1 + $2) "\t" $4}' sorted_models.txt | sort -k2 -g | head -n 10 | awk '{print $1}'); do awk '/'$model'/' *_scores.out >> best_models/best_models.txt; done
 ```
